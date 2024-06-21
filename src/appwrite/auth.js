@@ -41,14 +41,15 @@ export class AuthService {
         } catch (error) {
             throw error
         }
-        return null;
     }
 
     async logout(){
         try {
             await this.account.deleteSessions();
+            return true
         } catch (error) {
             console.log("Appwrite service :: logout :: error ", error);
+            return false
         }
     }
 }
