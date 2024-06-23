@@ -10,7 +10,7 @@ function Select({
     return (
         <div className="w-full">
             {label && <label htmlFor={id} className=""></label>}
-            <Select
+            <select
             {...props}
             id={id}
             ref={ref}
@@ -20,7 +20,7 @@ function Select({
                         {option}
                     </option>
                 ))}
-            </Select>
+            </select>
         </div>
     )
 }

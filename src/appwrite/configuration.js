@@ -33,7 +33,7 @@ export class AppwriteService {
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, statu}) {
+    async updatePost(slug, {title, content, featuredImage, status}) {
         try {
             return await this.databases.updateDocument(
                 config.appwriteDatabaseId,
@@ -87,6 +87,19 @@ export class AppwriteService {
             )
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error ", error);
+            return false
+        }
+    }
+
+    async getMyPosts(userId){
+        try {
+            return await this.databases.listDocuments(
+                config.appwriteDatabaseId,
+                config.appwriteCollectionId,
+                [Query.equal("userId", userId)]
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getMyPosts :: error ", error);
             return false
         }
     }
