@@ -3,11 +3,13 @@ import { Container, LogoutBtn, Logo } from '../index'
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import authService from "../../appwrite/auth";
 
 function Header() {
 
     const authStatus = useSelector((state) => state.auth.status) // state.auth.slice (check store on how its stored :) )
     const navigate = useNavigate()
+    const userName = useSelector(state => state.auth.userData).name
 
     const navItems = [
         {
@@ -44,8 +46,10 @@ function Header() {
                     <div className='mr-4'>
                       <Link to='/'>
                         <Logo width='70px'   />
-
                         </Link>
+                    </div>
+                    <div className="inline-bock px-6 py-2 rounded-full text-lg text-yellow-500">
+                        Welcome, {userName}
                     </div>
                     <ul className='flex ml-auto'>
                         {navItems.map((item) => 
